@@ -1,4 +1,4 @@
-[![16inputs-rpi](pictures/sequent.jpg)](https://www.sequentmicrosystems.com)
+[![16inputs-rpi](pictures/sequent.jpg)](https://www.sequentmicrosystems.com )
 
 # 16inputs-rpi
 
