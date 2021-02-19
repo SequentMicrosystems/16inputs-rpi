@@ -23,6 +23,8 @@
 #define UNUSED(X) (void)X      /* To avoid gcc/g++ warnings */
 #define CMD_ARRAY_SIZE	7
 
+const uint16_t pinMask[16] = { 0x0080, 0x0040, 0x0020, 0x0010, 0x0008, 0x0004, 0x0002, 0x0001, 
+			      0x8000, 0x4000, 0x2000, 0x1000, 0x0800, 0x0400, 0x0200, 0x0100};
 char *warranty =
 	"	       Copyright (c) 2016-2020 Sequent Microsystems\n"
 		"                                                             \n"
@@ -247,6 +249,7 @@ int chGet(int dev, u8 channel, int* state)
 {
 	u8 buff[2];
 	int val = 0;
+	int i = 0;
 
 	if (NULL == state)
 	{
@@ -266,12 +269,19 @@ int chGet(int dev, u8 channel, int* state)
 	}
 	val = (0xff & (~buff[0])) + ((0xff & (~buff[1])) << 8);
 	if (0 == channel)
-	{
-		*state = val;
+	{	
+		*state = 0;
+		for(i = 0; i< 16; i++)
+		{
+			if(val & pinMask[i])
+			{
+				*state += 1 << i;
+			}
+		}
 	}
 	else
 	{
-		if (val & (1 << (channel - 1)))
+		if (val & pinMask[channel - 1])
 		{
 			*state = ON;
 		}
