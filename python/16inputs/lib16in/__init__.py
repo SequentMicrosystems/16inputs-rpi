@@ -2,7 +2,7 @@ import smbus
 
 DEVICE_ADDRESS = 0x20     # 7 bit address (will be left shifted to add the read write bit)
 INPUTS16_INPORT_REG_ADD = 0
-
+pinMak = [0x0080, 0x0040, 0x0020, 0x0010, 0x0008, 0x0004, 0x0002, 0x0001, 0x8000, 0x4000, 0x2000, 0x1000, 0x0800, 0x0400, 0x0200, 0x0100]
 
 def readCh(stack, channel):
     if stack < 0 or stack > 7:
@@ -18,9 +18,9 @@ def readCh(stack, channel):
         bus.close()
         raise Exception(e)
     bus.close()
-    if val & (1 << (vhannel-1)):
-        return 0
-    return 1
+    if val & pinMsk[channel - 1] == 0:
+        return 1
+    return 0
 
 
 def readAll(stack):
@@ -35,4 +35,8 @@ def readAll(stack):
         bus.close()
         raise Exception(e)
     bus.close()
-    return 0xffff & (~val)
+    ret = 0
+    for i in range(16):
+        if val & pinMask[i] == 0:
+            ret += 1 << i
+    return ret
