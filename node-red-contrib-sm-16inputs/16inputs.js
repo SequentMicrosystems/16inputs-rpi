@@ -70,13 +70,13 @@ module.exports = function(RED) {
               }
               channel-= 1;//zero based
               rawData = ~rawData;
-              if( rawData & mask[channel] != 0){
+              if( (rawData & mask[channel]) != 0){
                 msg.payload = 1;
               }
               else{
                 msg.payload = 0;
               }
-                           
+              node.send(msg);             
             }catch(err) {
                 this.error(err,msg);                          
             }
