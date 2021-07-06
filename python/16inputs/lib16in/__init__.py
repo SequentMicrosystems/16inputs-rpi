@@ -18,7 +18,7 @@ def readCh(stack, channel):
         bus.close()
         raise Exception(e)
     bus.close()
-    if val & pinMsk[channel - 1] == 0:
+    if val & pinMask[channel - 1] == 0:
         return 1
     return 0
 
