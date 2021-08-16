@@ -1,10 +1,10 @@
 # node-red-contrib-sm-16inputs
 
-This is the node-red node to control Sequent Microsystems [16-INPUTS Stackable Card for Raspberry Pi](https://sequentmicrosystems.com).
+This is the node-red node to control Sequent Microsystems [16-INPUTS Stackable Card for Raspberry Pi](https://sequentmicrosystems.com/collections/all-io-cards/products/16-universal-inputs-3-48vac-dc-8-layer-stackable-card-br-for-raspberry-pi).
 
-## Install
+## Manual Install
 
-Clone or update the repository, follow the instrutions fron the [first page.](https://github.com/SequentMicrosystems/16inputs-rpi)
+Clone or update the repository, follow the instructions fron the [first page.](https://github.com/SequentMicrosystems/16inputs-rpi)
 
 In your node-red user directory, tipicaly ~/.node-red,
 
@@ -12,7 +12,7 @@ In your node-red user directory, tipicaly ~/.node-red,
 ~$ cd ~/.node-red
 ```
 
-Run the fallowing command:
+Run the following command:
 
 ```bash
 ~/.node-red$ npm install ~/16inputs-rpi/node-red-contrib-sm-16inputs
